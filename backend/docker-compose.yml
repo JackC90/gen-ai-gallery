@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:13
+    env_file:
+      - ./.env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    # -------- replace with comment to run migrations with docker --------
+    expose:
+      - "5432"
+    ports:
+      - 5532:5432
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis-data:/data
+    expose:
+      - "6382"
+
+volumes:
+  postgres-data:
+  redis-data:
